@@ -1,8 +1,15 @@
 package customers;
 
 public class CustomerDAO implements ICustomerDAO{
-	private ILogger logger = new Logger();
-	
+//	private ILogger logger = new Logger();
+
+//	constructor injection note the name is the same as the id
+	private ILogger logger;
+
+	public CustomerDAO(ILogger logger) {
+		this.logger = logger;
+	}
+
 	public void save(Customer customer) {
 		// simple sleep
 		try {
@@ -14,4 +21,6 @@ public class CustomerDAO implements ICustomerDAO{
 		logger.log("Customer is saved in the DB: "+ customer.getName() );
 	}
 
+//	public void setLogger(Logger logger) {
+//	}
 }
