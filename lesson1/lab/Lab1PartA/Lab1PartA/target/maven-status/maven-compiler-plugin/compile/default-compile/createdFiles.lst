@@ -1,0 +1,11 @@
+customers\ICustomerService.class
+customers\ILogger.class
+customers\Logger.class
+customers\Customer.class
+customers\CustomerDAO.class
+customers\CustomerService.class
+customers\IEmailSender.class
+customers\Address.class
+customers\ICustomerDAO.class
+customers\Application.class
+customers\EmailSender.class
