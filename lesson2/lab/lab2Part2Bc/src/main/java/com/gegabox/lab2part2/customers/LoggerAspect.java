@@ -15,9 +15,9 @@ public class LoggerAspect {
         System.out.println(
                 LocalDateTime.now()
                         +
-                        " method=" + joinPoint.getSignature().getName()
+                        " method= " + joinPoint.getSignature().getName()
                         +
-                        " address=" + email
+                        " address= " + email
                         +
                         " message= " + message
                         +
