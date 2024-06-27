@@ -1,0 +1,12 @@
+CREATE TABLE product (
+  productNumber  INTEGER PRIMARY KEY,
+  name VARCHAR(50),
+  price double
+);
+
+CREATE TABLE supplier (
+  supplierId  INTEGER PRIMARY KEY,
+  name VARCHAR(50),
+  phone VARCHAR(50),
+  productNumber INTEGER
+);
