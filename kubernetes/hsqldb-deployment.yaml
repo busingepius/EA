@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hsqldb_deployment
+  labels:
+    app: hsqldb_deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hsqldb_deployment
+  template:
+    metadata:
+      name: hsqldb_deployment
+      labels:
+        app: hsqldb_deployment
+    spec:
+      containers:
+        - name: hsqldb_deployment
+          image: nginx
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9001
+              protocol: TCP
+      restartPolicy: Always
+      
