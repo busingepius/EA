@@ -1,14 +1,13 @@
 package customers;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class CustomerDAO implements ICustomerDAO{
-//	private ILogger logger = new Logger();
+	@Autowired
+	private ILogger logger ;
 
-//	constructor injection note the name is the same as the id
-	private ILogger logger;
-
-	public CustomerDAO(ILogger logger) {
-		this.logger = logger;
-	}
 
 	public void save(Customer customer) {
 		// simple sleep

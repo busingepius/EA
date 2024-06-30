@@ -7,7 +7,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class Application {
     public static void main(String[] args) {
 
-        // dependency injection using Java configuration
+// dependency injection using Java configuration + classpath scanning + auto-wiring
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
         ICustomerService customerService = context.getBean("customerService", ICustomerService.class);
 

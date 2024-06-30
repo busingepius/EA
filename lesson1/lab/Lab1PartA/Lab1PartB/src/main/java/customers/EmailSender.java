@@ -1,15 +1,16 @@
 package customers;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class EmailSender implements IEmailSender {
 	String outgoingMailServer = "smtp.acme.com";
-//	private ILogger logger = new Logger()
+	@Autowired
+	private ILogger logger;
+//	private ILogger logger = new Logger();
 
-	//	constructor injection
-	private ILogger logger ;
 
-	public EmailSender(ILogger logger) {
-		this.logger = logger;
-	}
 
 	public String getOutgoingMailServer() {
 		return outgoingMailServer;

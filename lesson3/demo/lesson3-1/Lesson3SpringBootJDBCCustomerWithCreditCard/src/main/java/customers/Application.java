@@ -13,6 +13,9 @@ public class Application implements CommandLineRunner {
 	@Autowired
 	private CustomerDAO customerDao;
 
+	@Autowired
+	private ProductDAO productDao;
+
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
@@ -32,5 +35,22 @@ public class Application implements CommandLineRunner {
 		System.out.println(customerDao.getCustomer(66));
 		System.out.println("-----------All customers ----------------");
 		System.out.println(customerDao.getAllCustomers());
+
+
+		productDao.clearDB();
+		Product product = new Product(1, "Laptop", 1200.0);
+		Supplier supplier = new Supplier("Dell", "0622341678");
+		product.setSupplier(supplier);
+		productDao.save(product);
+		product = new Product(2, "Printer", 200.0);
+		supplier = new Supplier("HP", "068633452");
+		product.setSupplier(supplier);
+		productDao.save(product);
+		System.out.println(productDao.getProduct(1));
+		System.out.println(productDao.getProduct(2));
+		System.out.println("-----------All products ----------------");
+		System.out.println(productDao.getAllProducts());
+
+
 	}
 }

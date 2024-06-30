@@ -1,26 +1,37 @@
+# pod was deleted not needed BECAUSE I have a deployment
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hsqldb_deployment
+  name: hsqldb-deployment
   labels:
-    app: hsqldb_deployment
+    app: hsqldb-deployment
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: hsqldb_deployment
+      app: hsqldb-deployment
   template:
     metadata:
-      name: hsqldb_deployment
+      name: hsqldb-deployment
       labels:
-        app: hsqldb_deployment
+        app: hsqldb-deployment
     spec:
       containers:
-        - name: hsqldb_deployment
-          image: nginx
-          imagePullPolicy: IfNotPresent
+        - name: hsqldb-deployment
+          image: blacklabelops/hsqldb:latest
           ports:
             - containerPort: 9001
-              protocol: TCP
+          env:
+            - name: HSQLDB_DATABASE_NAME
+              value: "trainingdb"
+            - name: HSQLDB_DATABASE_ALIAS
+              value: "trainingdb"
+            - name: HSQLDB_USER
+              value: "SA"
+            - name: HSQLDB_PASSWORD
+              value: ""
+          imagePullPolicy: IfNotPresent
       restartPolicy: Always
+    
       

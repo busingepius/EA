@@ -26,6 +26,8 @@ public class CustomerDAO {
         namedParameters.put("name", customer.getName());
         namedParameters.put("email", customer.getEmail());
         namedParameters.put("phone", customer.getPhone());
+        //Unable to resolve table 'customer'
+
         jdbcTemplate.update("INSERT INTO customer VALUES ( :customernumber, :name, :email, :phone)",namedParameters);
 
         // save creditcard

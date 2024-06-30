@@ -1,9 +1,23 @@
 package domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+
+
+@Entity
 public class Address {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	private String street;
 	private String city;
 	private String zip;
+
+	public Address() {
+	}
 	
 	public Address(String street, String city, String zip) {
 		super();
@@ -11,6 +25,15 @@ public class Address {
 		this.city = city;
 		this.zip = zip;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+//	public void setId(Long id) {
+//		this.id = id;
+//	}
+
 	public String getStreet() {
 		return street;
 	}

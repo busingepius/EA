@@ -1,13 +1,25 @@
 package domain;
 
-public class Student {
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.OneToMany;
+import java.util.Map;
+import javax.persistence.MapKey;
+import java.util.HashMap;
+
+@Entity
+public class School {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String name;
 
-    public Student() {
+    public School() {
     }
 
-    public Student(String name) {
+    public School(String name) {
         this.name = name;
     }
 
@@ -24,5 +36,16 @@ public class Student {
         this.name = name;
     }
 
-    private 
+    @OneToMany
+// key is the student's first name
+    @MapKey(name = "student_id")
+    private Map<Long, Student> student = new HashMap<>();
+
+    public Map<Long, Student> getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student.put(student.getStudent_id(), student);
+    }
 }

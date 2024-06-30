@@ -4,12 +4,34 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
+import javax.persistence.Entity;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.CascadeType;
+
+import domain.Address;
+import domain.Order;
+
+@Entity
 public class Customer {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
 	private String firstname;
 	private String lastname;
+
+	@ManyToOne
 	private Address address;
+
+	@OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
+//	@JoinColumn(name = "CUSTOMER_ID")
 	private Collection<Order> theOrders = new ArrayList<Order>();
 
 	public Customer() {
@@ -22,6 +44,21 @@ public class Customer {
 		this.address = new Address(street, city, zip);
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+//	public void setId(Long id) {
+//		this.id = id;
+//	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 
 	public String getFirstname() {
 		return firstname;

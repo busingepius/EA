@@ -1,13 +1,18 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: hsqldb_service
+  name: hsqldb-service
 spec:
   selector:
-    app: hsqldb_service
+    app: hsqldb-deployment
   ports:
     - protocol: TCP
-      port: 80
+      port: 9001 # exposed by the service
       targetPort: 9001
+      nodePort: 30009
   type: NodePort
+  
+  
+
+  
   

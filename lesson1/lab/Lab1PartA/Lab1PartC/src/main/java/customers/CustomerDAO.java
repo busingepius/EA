@@ -1,12 +1,11 @@
 package customers;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-@Component
 public class CustomerDAO implements ICustomerDAO{
-	@Autowired
 	private ILogger logger ;
+
+	public CustomerDAO(ILogger logger) {
+		this.logger = logger;
+	}
 
 
 	public void save(Customer customer) {
@@ -19,7 +18,4 @@ public class CustomerDAO implements ICustomerDAO{
 		System.out.println("CustomerDAO: saving customer "+customer.getName());
 		logger.log("Customer is saved in the DB: "+ customer.getName() );
 	}
-
-//	public void setLogger(Logger logger) {
-//	}
 }

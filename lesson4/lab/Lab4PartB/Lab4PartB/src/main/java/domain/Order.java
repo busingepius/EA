@@ -4,37 +4,64 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import javax.persistence.CascadeType;
+
+import java.util.Date;
+
+import domain.Customer;
+
+@Entity
+@Table(name = "orders")
 public class Order {
 
-	private String ordernr;
-	private String date;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long ordernr;
+
+	@Temporal(TemporalType.DATE)
+	private Date date;
+
 	private String status;
+
+	@ManyToOne(/*cascade = CascadeType.ALL*/)
 	private Customer customer;
+
+	@OneToMany/*(mappedBy = "order")*/
 	private Collection<OrderLine> orderlines = new ArrayList<OrderLine>();
 
 	public Order() {
 	}
 
-	public Order(String ordernr, String date, String status) {
-		this.ordernr = ordernr;
-		this.date = date;
+	public Order( String status) {
 		this.status = status;
 	}
 
-	public String getOrdernr() {
+
+
+	public long getOrdernr() {
 		return ordernr;
 	}
 
-	public void setOrdernr(String ordernr) {
-		this.ordernr = ordernr;
-	}
+//	public void setOrdernr(String ordernr) {
+//		this.ordernr = ordernr;
+//	}
 
-	public String getDate() {
+
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

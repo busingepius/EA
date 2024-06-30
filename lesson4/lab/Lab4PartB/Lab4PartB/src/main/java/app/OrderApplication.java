@@ -10,57 +10,155 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import repositories.DepartmentRepository;
+import repositories.EmployeeRepository;
+import repositories.PublisherRepository;
+
+import domain.Department;
+import domain.Employee;
+import domain.Flight;
+import domain.Passenger;
+import domain.Book;
+import domain.Publisher;
+import domain.School;
+import domain.Student;
+
+import domain.Customer;
+import domain.Order;
+import domain.OrderLine;
+import domain.Product;
+import domain.Address;
+
+import repositories.BookRepository;
+import repositories.PublisherRepository;
+import repositories.FlightRepository;
+import repositories.PassengerRepository;
+import repositories.SchoolRepository;
+import repositories.StudentRepository;
+
+import repositories.CustomerRepository;
+import repositories.OrderRepository;
+import repositories.OrderLineRepository;
+import repositories.ProductRepository;
+import repositories.AddressRepository;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+
 @SpringBootApplication
 @EnableJpaRepositories("repositories")
-@EntityScan("domain") 
-public class OrderApplication implements CommandLineRunner{
-	
+@EntityScan("domain")
+public class OrderApplication implements CommandLineRunner {
 
-	public static void main(String[] args) {
-		SpringApplication.run(OrderApplication.class, args);
-	}
+    @Autowired
+    DepartmentRepository departmentRepository;
 
-	@Override
-	public void run(String... args) throws Exception {
-		Product product = new Product();
-		product.setName("Hibernate 3");
-		product.setDescription("Good book on Hibernate");
-		product.setPrice(35.50);
-		OrderLine ol1 = new OrderLine(2, product);
+    @Autowired
+    EmployeeRepository employeeRepository;
 
-		Product product2 = new Product();
-		product2.setName("The best of Queen");
-		product2.setDescription("Album from 1995");
-		product2.setPrice(12.98);
-		OrderLine ol2 = new OrderLine(4, product2);
+    @Autowired
+    PublisherRepository publisherRepository;
 
-		Order o1 = new Order("234743", "12/10/06", "open");
-		o1.addOrderLine(ol1);
-		o1.addOrderLine(ol2);
+    @Autowired
+    BookRepository bookRepository;
 
-		Customer c1 = new Customer("Frank", "Brown", "Mainstreet 1",
-				"New york", "43221");
-		c1.addOrder(o1);
-		o1.setCustomer(c1);
+    @Autowired
+    FlightRepository flightRepository;
+
+    @Autowired
+    PassengerRepository passengerRepository;
+
+    @Autowired
+    SchoolRepository schoolRepository;
+
+    @Autowired
+    StudentRepository studentRepository;
+
+    @Autowired
+    CustomerRepository customerRepository;
+
+    @Autowired
+    OrderRepository orderRepository;
+
+    @Autowired
+    OrderLineRepository orderLineRepository;
+
+    @Autowired
+    ProductRepository productRepository;
+
+    @Autowired
+    AddressRepository addressRepository;
 
 
-		printOrder(o1);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(OrderApplication.class, args);
+    }
 
-	public static void printOrder(Order order) {
-		System.out.println("Order with orderNumber: " + order.getOrdernr());
-		System.out.println("Order date: " + order.getDate());
-		System.out.println("Order status: " + order.getStatus());
-		Customer cust = order.getCustomer();
-		System.out.println("Customer: " + cust.getFirstname() + " "
-				+ cust.getLastname());
-		for (OrderLine orderline : order.getOrderlines()) {
-			System.out.println("Order line: quantity= "
-					+ orderline.getQuantity());
-			Product product = orderline.getProduct();
-			System.out.println("Product: " + product.getName() + " "
-					+ product.getDescription() + " " + product.getPrice());
-		}
+    @Override
+    public void run(String... args) throws Exception {
+
+
+// department and their employees
+        Department department = new Department("IT");
+        Employee employee = new Employee("John");
+
+        department.setEmployees(employee);
+        employee.setDepartment(department);
+
+//        departmentRepository.save(department);
+//        employeeRepository.save(employee);
+
+        // book and its publisher
+        Book book = new Book("1234", "Java", "John 17");
+        Publisher publisher = new Publisher("John 17");
+
+
+        book.setPublisher(publisher);
+//        publisherRepository.save(publisher); // no need to save the publisher directly because it is saved when the book is saved
+        bookRepository.save(book);
+
+        // passenger and the flight they are on
+        Passenger passenger = new Passenger("John");
+        Flight flight = new Flight("1234", "Lagos", "London");
+
+        passenger.setFlight(flight);
+        flightRepository.save(flight);
+        passengerRepository.save(passenger);
+
+        // student and their schools
+        School school = new School("University of Lagos");
+        Student student = new Student("John", "Doe");
+
+        school.setStudent(student);
+        studentRepository.save(student);
+        schoolRepository.save(school);
+
+        // customer
+        Customer customer = new Customer("John", "Doe", "Mainstreet 1", "New York", "43221");
+        // product
+        Product product = new Product("Java", "Java book", 35.50);
+        // address
+        Address address = new Address("Mainstreet 1", "New York", "43221");
+        // order
+        Order order = new Order( "open");
+        // orderline
+        OrderLine orderLine = new OrderLine(2, product);
+
+        customer.setAddress(address);
+//        address.setCustomer(customer);
+//        product.setOrderLine(orderLine);
+        orderLine.setProduct(product);
+        order.addOrderLine(orderLine);
+        order.setCustomer(customer);
+        customer.addOrder(order);
+
+        // order matters save the entities in the right order
+        addressRepository.save(address);
+        productRepository.save(product);
+        orderLineRepository.save(orderLine);
+        customerRepository.save(customer);
+        orderRepository.save(order);
 
 	}
 }

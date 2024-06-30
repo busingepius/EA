@@ -1,5 +1,8 @@
 package customers;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class CustomerDAO implements ICustomerDAO{
 	private ILogger logger ;
 
