@@ -1,54 +1,80 @@
 package domain;
 
+import jakarta.persistence.*;
 
-
+@Entity
+@SecondaryTable(name = "Address", pkJoinColumns = @PrimaryKeyJoinColumn(name = "patient_id"))
 public class Patient {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-	private String name;
-	private String street;
-	private String zip;
-	private String city;
+    private String name;
+    @Column(table = "Address")
+    private String street;
+    @Column(table = "Address")
+    private String zip;
+    @Column(table = "Address")
+    private String city;
 
-	public Patient() {
-	}
+    public Patient() {
+    }
 
-	public Patient(String name, String street, String zip, String city) {
-		this.name = name;
-		this.street = street;
-		this.zip = zip;
-		this.city = city;
-	}
+    public Patient(String name, String street, String zip, String city) {
+        this.name = name;
+        this.street = street;
+        this.zip = zip;
+        this.city = city;
+    }
 
+    public Long getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getStreet() {
-		return street;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setStreet(String street) {
-		this.street = street;
-	}
+    public String getStreet() {
+        return street;
+    }
 
-	public String getZip() {
-		return zip;
-	}
+    public void setStreet(String street) {
+        this.street = street;
+    }
 
-	public void setZip(String zip) {
-		this.zip = zip;
-	}
+    public String getZip() {
+        return zip;
+    }
 
-	public String getCity() {
-		return city;
-	}
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
 
-	public void setCity(String city) {
-		this.city = city;
-	}
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    @java.lang.Override
+    public java.lang.String toString() {
+        return "Patient{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", street='" + street + '\'' +
+                ", zip='" + zip + '\'' +
+                ", city='" + city + '\'' +
+                '}';
+    }
 }

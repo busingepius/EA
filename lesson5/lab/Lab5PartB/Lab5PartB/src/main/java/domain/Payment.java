@@ -1,6 +1,8 @@
 package domain;
 
+import jakarta.persistence.Embeddable;
 
+@Embeddable
 public class Payment {
 
 	private String payDate;
@@ -28,5 +30,10 @@ public class Payment {
 
 	public void setAmount(double amount) {
 		this.amount = amount;
+	}
+
+	@Override
+	public String toString() {
+		return "Payment [payDate=" + payDate + ", amount=" + amount + "]";
 	}
 }
