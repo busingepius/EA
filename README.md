@@ -21,7 +21,7 @@
 
 #### Kubernetes service
 - set up the blacklabelops/hsqldb image and deployment, then spin up the service
-- run the following commands:
+- run the following commands: this will enable access on localhost:9003
 ```
 kubectl port-forward service/SERVICE_NAME MY_DESIRED_PORT_NUMBER:EXPOSED_SERVICE_PORT_NUMBER
 e.g kubectl port-forward service/hsqldb-service 9003:9001
