@@ -39,3 +39,43 @@ e.g kubectl port-forward service/hsqldb-service 9003:9001
             - name: HSQLDB_PASSWORD
               value: ""
 ```
+
+
+#### Lab six
+- [x] Spring Queries
+
+#### Lab seven
+- [x] Spring transactions and concurrency and optimization
+
+#### Lab eight
+
+- [x] Spring MongoDB
+
+#### Lab nine
+- [x] Spring REST Services
+
+      Best practices for RESTful services
+        - Put only one or two path variables on the URL
+        - A method should hav 3 or less parameters
+        - Always return objects to the front End not strings or numbers
+        - Always give default constructor , getters and setters to classes
+        - In Spring Boot, always return RESPONSE ENTITY. Helps to set headers and status codes
+        - Always return the same object on sucess POST anc PUT
+        - For Lists, always return RESPONSE ENTITY with only one converted object to avoid front end massage
+        - Never return a list of objects
+        - Nevere return an exception to the front end
+        - Use @RestControllerAdvice to handle exceptions
+        - Use @Valid to validate objects
+        - Use @RequestBody to get objects from the front end
+        - Use @PathVariable to get path variables
+        - Use @RequestParam to get query parameters
+        - Use @RequestHeader to get headers
+        - Use @ResponseStatus to set status codes
+        - Use @GetMapping, @PostMapping, @PutMapping, @DeleteMapping
+        - Use @CrossOrigin to allow front end to access the back end
+        - Use @Transactional to handle transactions
+        - Use @Async to handle concurrency
+        - Use verbs and plurals in the URL
+        - Use underscores in the URL e.g ?results_per_page=20
+        - Use camel case in the URL e.g ?resultsPerPage=20
+        - Though not sure about the last two points
