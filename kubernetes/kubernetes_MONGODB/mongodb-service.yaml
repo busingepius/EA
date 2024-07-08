@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-service
+  labels:
+    app: mongodb
+spec:
+  selector:
+    app: mongodb
+  ports:
+    - protocol: TCP
+      port: 27017     # Port on which the Service will be exposed
+      targetPort: 27017  # Port on the MongoDB container
+  type: ClusterIP  # Internal access only (default)
+  

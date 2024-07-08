@@ -79,3 +79,8 @@ e.g kubectl port-forward service/hsqldb-service 9003:9001
         - Use underscores in the URL e.g ?results_per_page=20
         - Use camel case in the URL e.g ?resultsPerPage=20
         - Though not sure about the last two points
+
+## NOTE:
+    - POST is not idempotent i.e it changes the state of the server whenever it is called
+    - WAR files are not used in Spring Boot anymore but JAR files, the latter is more efficient and creates a container with Tomcat embedded
+
