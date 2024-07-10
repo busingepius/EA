@@ -29,7 +29,8 @@ public class SpringJmsPersonSenderApplication implements CommandLineRunner {
 
 
 	public static void main(String[] args)  {
-		ConfigurableApplicationContext context = SpringApplication.run(SpringJmsPersonSenderApplication.class, args);
+		ConfigurableApplicationContext context = SpringApplication
+				.run(SpringJmsPersonSenderApplication.class, args);
 		context.close();
 	}
 

@@ -8,13 +8,15 @@ import java.io.IOException;
 
 @Component
 public class PersonMessageListener {
+    int i = 1;
  
     @JmsListener(destination = "testQueue")
     public void receiveMessage(final String personAsString) {
         ObjectMapper objectMapper = new ObjectMapper();
+
         try {
             Person person = objectMapper.readValue(personAsString, Person.class);
-            System.out.println("JMS receiver received message:" + person.getFirstName()+" "+person.getLastName());
+            System.out.println("JMS receiver received message:" + person.getFirstName()+" "+person.getLastName()+" "+ ++i);
 
         } catch (IOException e) {
             System.out.println("JMS receiver: Cannot convert : " + personAsString+" to a Person object");

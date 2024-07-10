@@ -21,7 +21,7 @@ public class SenderApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         System.out.println("Starting to send a message");
-        sender.send("topicA", "Hello World");
+        sender.send("topicA2", "Hello World");
         System.out.println("Message has been sent");
     }
 }
