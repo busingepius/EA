@@ -1,0 +1,15 @@
+myapp: 
+    applictionName: killerapp
+    version: 3.5
+    serverUrl: http://server/com
+    serverName: server
+    countries: 
+      - USA
+      - Germany
+      - France
+    user:
+      firstname: Frank
+      lastname: Brown
+      username: Johnie
+      password: xsdfgh342
+      
