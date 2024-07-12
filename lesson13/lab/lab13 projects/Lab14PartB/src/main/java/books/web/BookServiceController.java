@@ -24,7 +24,7 @@ public class BookServiceController {
     public ResponseEntity<?> getBook(@PathVariable String isbn) {
         Book book = bookService.findByIsbn(isbn);
         if (book == null) {
-            return new ResponseEntity<CustomErrorType>(new CustomErrorType("Book with isbn= " + isbn + " is not available"),HttpStatus.NOT_FOUND);
+            return new ResponseEntity<CustomErrorType>(new CustomErrorType("Book with isbn = " + isbn + " is not available"),HttpStatus.NOT_FOUND);
         }
 
         return new ResponseEntity<Book> (book, HttpStatus.OK);
@@ -34,7 +34,8 @@ public class BookServiceController {
     public ResponseEntity<?> deleteBook(@PathVariable String isbn) {
         Book book = bookService.findByIsbn(isbn);
         if (book == null) {
-            return new ResponseEntity<CustomErrorType>(new CustomErrorType("Book with isbn = " + isbn + " is not available"),HttpStatus.NOT_FOUND);
+            return new ResponseEntity<CustomErrorType>(
+                    new CustomErrorType("Book with isbn = " + isbn + " is not available"),HttpStatus.NOT_FOUND);
         }
         bookService.delete(isbn);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
